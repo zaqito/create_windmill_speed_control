@@ -1,5 +1,5 @@
 
-Installation information
+BIsToukette <3
 =======
 
 This template repository can be directly cloned to get you started with a new
