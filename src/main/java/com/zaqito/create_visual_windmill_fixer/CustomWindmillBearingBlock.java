@@ -6,10 +6,25 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 
 public class CustomWindmillBearingBlock extends WindmillBearingBlock {
-    public CustomWindmillBearingBlock(Properties properties) {
-        super(properties);
+//    public CustomWindmillBearingBlock(Properties properties) {
+//        super(properties);
+//    }
+
+    public CustomWindmillBearingBlock() {
+        // FIXED: Hardcode robust, standard physical properties identical to the bearing
+        // to prevent accessing Create's blocks before they are bound!
+        super(BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
+                .requiresCorrectToolForDrops()
+                .strength(3.5F)
+                .sound(SoundType.NETHERITE_BLOCK)
+                .noOcclusion()
+        );
     }
 
     // Hijack the BlockEntity creation method to return our custom data entity
