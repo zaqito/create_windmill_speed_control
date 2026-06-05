@@ -2,8 +2,6 @@ package com.zaqito.create_visual_windmill_fixer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllPartialModels;
-import com.simibubi.create.content.contraptions.bearing.IBearingBlockEntity;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.createmod.catnip.math.AngleHelper;
@@ -13,7 +11,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class CustomBearingRenderer extends KineticBlockEntityRenderer<CustomWindmillBearingBlockEntity> {
@@ -45,10 +42,4 @@ public class CustomBearingRenderer extends KineticBlockEntityRenderer<CustomWind
         superBuffer.rotateCentered(AngleHelper.rad(-90 - AngleHelper.verticalAngle(facing)), Direction.EAST);
         superBuffer.renderInto(ms, buffer.getBuffer(RenderType.solid()));
     }
-
-//    @Override
-//    protected SuperByteBuffer getRotatedModel(KineticBlockEntity be, BlockState state) {
-//        // Renders the standard static rear bearing chassis frame
-//        return CachedBuffers.partialFacing(AllPartialModels.BEARING_CHASSIS, state);
-//    }
 }

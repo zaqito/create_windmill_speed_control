@@ -4,7 +4,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -32,7 +31,7 @@ public class CreateVisualWindmillFixer {
         modEventBus.addListener(this::commonSetup);
 
         // Hook the localized registry buses up to NeoForge
-        ModBlocks.BLOCKS.register(modEventBus); // Register the Deferred Register to the mod event bus so blocks get registered
+        ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
 
@@ -48,17 +47,34 @@ public class CreateVisualWindmillFixer {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
+        // Register the mod's ModConfigSpec so that FML can create and load the config file
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
-        // FIX: Safely register our renderer configuration directly to the MOD event bus
+        // Safely register the custom renderer config directly to the MOD event bus
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.addListener(ClientModEvents::registerRenderers);
         }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-        // Some common setup code
+        event.enqueueWork(() -> {
+            // 1. Grab the custom windmill block instance
+            net.minecraft.world.level.block.Block customBlock = ModBlocks.VISUAL_WINDMILL_BEARING.get();
+            net.minecraft.world.level.block.Block vanillaBlock = com.simibubi.create.AllBlocks.WINDMILL_BEARING.get();
+
+            // 2. Register the capacity supplier using the exact fields from the vanilla windmill BlockStressValues class
+            com.simibubi.create.api.stress.BlockStressValues.CAPACITIES.register(
+                    customBlock,
+                    () -> com.simibubi.create.api.stress.BlockStressValues.getCapacity(vanillaBlock)
+            );
+
+            // 3. Register the RPM display configuration so the tooltips/goggles show correct statistics
+            com.simibubi.create.api.stress.BlockStressValues.RPM.register(
+                    customBlock,
+                    com.simibubi.create.api.stress.BlockStressValues.RPM.get(vanillaBlock)
+            );
+        });
+
         LOGGER.info("Visual Windmill Fixer Addon Initialized!");
     }
 

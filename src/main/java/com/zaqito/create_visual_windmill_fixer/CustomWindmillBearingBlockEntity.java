@@ -1,18 +1,23 @@
 package com.zaqito.create_visual_windmill_fixer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.bearing.WindmillBearingBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import java.util.List;
+import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity {
     private int visualSpeedPercentage = 100;
     private float customAngleTracker = 0.0f;
@@ -33,6 +38,56 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
                 new UnifiedWindmillScrollBehaviour.VisualSpeedSlider(this, customSideSlot);
 
         behaviours.add(speedSliderBehaviour);
+    }
+
+    @Override
+    public BlockEntityType<?> getType() {
+        return ModBlockEntities.VISUAL_WINDMILL_BEARING_ENTITY.get();
+    }
+
+    @Override
+    public boolean isSource() {
+        return true;
+    }
+
+    @Override
+    public float getGeneratedSpeed() {
+        if (!this.running) {
+            return 0.0F;
+        }
+
+        // Try using the parent's dynamic sail/packet speed first
+        float speed = super.getGeneratedSpeed();
+
+        // If Create's engine fails to fetch sail counts due to registry type checks,
+        // we step in and force a valid base speed multiplied by the directional sign.
+        if (speed == 0.0F) {
+            // 16.0F matches Create's standard default wind rotation velocity limit
+            return 16.0F * this.getAngleSpeedDirection();
+        }
+
+        return speed;
+    }
+
+    // This returns the actual calculated capacity setting from the vanilla sail calculations
+    private float getSpeedSetting() {
+        // Pulls the configuration-defined speed per sail block directly from the base class logic
+        return super.getGeneratedSpeed() != 0 ? Math.abs(super.getGeneratedSpeed()) : 16.0f;
+    }
+
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        // Let Create displays the default Stress/RPM stats first
+        boolean hasTooltip = super.addToGoggleTooltip(tooltip, isPlayerSneaking);
+
+        // Append our custom percentage slider row to the overlay text
+        tooltip.add(Component.literal(" ")); // spacer line
+        tooltip.add(Component.literal("Visual Speed Factor: ")
+                .withStyle(ChatFormatting.GRAY)
+                .append(Component.literal(this.visualSpeedPercentage + "%")
+                        .withStyle(ChatFormatting.AQUA)));
+
+        return true; // Tells the rendering engine to display the tooltip successfully
     }
 
     /**

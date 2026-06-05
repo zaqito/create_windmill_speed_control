@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": {
+    "createvisualwindmillfixer:visual_windmill_bearing": {
+      "capacity": 16.0,
+      "impact": 0.0
+    }
+  }
+}
