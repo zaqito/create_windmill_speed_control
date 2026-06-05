@@ -1,10 +1,10 @@
 package com.zaqito.create_visual_windmill_fixer;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -14,7 +14,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
+
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(CreateVisualWindmillFixer.MODID)
@@ -50,6 +50,11 @@ public class CreateVisualWindmillFixer {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        // FIX: Safely register our renderer configuration directly to the MOD event bus
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            modEventBus.addListener(ClientModEvents::registerRenderers);
+        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -59,7 +64,7 @@ public class CreateVisualWindmillFixer {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+        if (event.getTabKey().location().getNamespace().equals("create")) {
             event.accept(ModItems.VISUAL_WINDMILL_BEARING_ITEM);
         }
     }

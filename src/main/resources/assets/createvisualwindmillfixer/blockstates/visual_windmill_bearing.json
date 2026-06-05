@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "createvisualwindmillfixer:block/visual_windmill_bearing", "x": 90 },
+    "facing=south": { "model": "createvisualwindmillfixer:block/visual_windmill_bearing", "x": 90, "y": 180 },
+    "facing=east": { "model": "createvisualwindmillfixer:block/visual_windmill_bearing", "x": 90, "y": 90 },
+    "facing=west": { "model": "createvisualwindmillfixer:block/visual_windmill_bearing", "x": 90, "y": 270 },
+    "facing=up": { "model": "createvisualwindmillfixer:block/visual_windmill_bearing" },
+    "facing=down": { "model": "createvisualwindmillfixer:block/visual_windmill_bearing", "x": 180 }
+  }
+}
