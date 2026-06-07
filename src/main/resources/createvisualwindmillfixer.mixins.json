@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.1",
+  "package": "com.zaqito.create_visual_windmill_fixer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ScrollValueBehaviourAccessor"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

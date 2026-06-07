@@ -22,10 +22,7 @@ public class CustomBearingRenderer extends KineticBlockEntityRenderer<CustomWind
     @Override
     protected void renderSafe(CustomWindmillBearingBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
                               int light, int overlay) {
-
-        // FIX: We bypass Flywheel's visualization check here.
-        // This forces the old-school rendering fallback path so our custom block entity
-        // draws its moving plate perfectly regardless of Flywheel's optimization engine.
+        // Render the kinetic shaft via the standard path
         super.renderSafe(be, partialTicks, ms, buffer, light, overlay);
 
         final Direction facing = be.getBlockState().getValue(BlockStateProperties.FACING);
@@ -33,7 +30,7 @@ public class CustomBearingRenderer extends KineticBlockEntityRenderer<CustomWind
         SuperByteBuffer superBuffer = CachedBuffers.partial(top, be.getBlockState());
 
         // Uses our custom angle tracker that handles the custom visual speed modifier!
-        float interpolatedAngle = be.getInterpolatedAngle(partialTicks - 1);
+        float interpolatedAngle = be.getPrevAngle() + (be.getAngle() - be.getPrevAngle()) * partialTicks;
         kineticRotationTransform(superBuffer, be, facing.getAxis(), (float) (interpolatedAngle / 180 * Math.PI), light);
 
         if (facing.getAxis().isHorizontal()) {
