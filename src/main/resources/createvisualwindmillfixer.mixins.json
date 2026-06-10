@@ -4,7 +4,9 @@
   "package": "com.zaqito.create_visual_windmill_fixer.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ScrollValueBehaviourAccessor"
+    "ControlledContraptionEntityAccessor",
+    "DebugControlledContraptionEntityMixin",
+    "DebugMechanicalBearingMixin"
   ],
   "client": [],
   "injectors": {

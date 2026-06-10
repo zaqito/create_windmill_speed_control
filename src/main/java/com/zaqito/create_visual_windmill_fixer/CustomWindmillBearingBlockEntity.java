@@ -78,14 +78,35 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
             visualPrevAngle = visualAngle;
 
             if (running) {
-                float realDelta = this.angle - angleBefore;
+                float realDelta = angularDifference(this.angle, angleBefore);
+                if (Math.abs(realDelta) > 100f) {
+                    CreateVisualWindmillFixer.LOGGER.warn(
+                            "[WRAP] before={} after={} delta={}",
+                            angleBefore,
+                            this.angle,
+                            realDelta
+                    );
+                }
                 visualAngle += realDelta * getVisualSpeedModifier();
+
                 // Contraption uses our visual angle on the client only.
-                // this.angle is never touched so server sync has nothing to fight.
                 if (movedContraption != null) {
+                    float realContraptionAngle = movedContraption.getAngle(1.0f);
+                    float error = Math.abs(angularDifference(realContraptionAngle, visualAngle));
+
+                    if (error > 10.0f) {
+                        CreateVisualWindmillFixer.LOGGER.warn(
+                                "[ANGLE_DRIFT] visual={} real={} diff={}",
+                                visualAngle,
+                                realContraptionAngle,
+                                error
+                        );
+                    }
+
                     movedContraption.setAngle(visualAngle);
                 }
-            } else {
+            }
+            else {
                 // Keep visual angle honest when stopped so restart is seamless
                 visualAngle = this.angle;
                 visualPrevAngle = this.angle;
@@ -94,7 +115,7 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     }
 
     // -------------------------------------------------------------------------
-    // Visual speed percentage — serialised and sent to client
+    // Visual speed percentage — serialized and sent to client
     // -------------------------------------------------------------------------
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
@@ -133,6 +154,21 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
         if (tag.contains("VisualSpeedPercentage")) {
             this.visualSpeedPercentage = tag.getInt("VisualSpeedPercentage");
         }
+    }
+
+    // -------------------------------------------------------------------------
+    // Maths helper
+    // -------------------------------------------------------------------------
+    private static float angularDifference(float current, float previous) {
+        float delta = current - previous;
+
+        while (delta > 180f)
+            delta -= 360f;
+
+        while (delta < -180f)
+            delta += 360f;
+
+        return delta;
     }
 }
 
