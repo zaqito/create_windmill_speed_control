@@ -3,9 +3,6 @@ package com.zaqito.create_visual_windmill_fixer;
 
 import com.simibubi.create.content.contraptions.bearing.WindmillBearingBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
-import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
-import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -23,6 +20,7 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     private int visualSpeedPercentage = 100;
     private float visualAngle = 0.0f;
     private float visualPrevAngle = 0.0f;
+    private VisualSpeedSlider visualSlider;
 
     public CustomWindmillBearingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -31,11 +29,16 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
-        behaviours.add(new UnifiedWindmillScrollBehaviour.VisualSpeedSlider(
-                this,
-                new SideShiftedValueBoxTransform(false)
-        ));
-
+//        behaviours.remove(movementDirection);
+        visualSlider = new VisualSpeedSlider(this, new SideShiftedValueBoxTransform());
+        behaviours.add(visualSlider);
+        for (BlockEntityBehaviour b : behaviours) {
+            CreateVisualWindmillFixer.LOGGER.info(
+                    "[ADD BEHAVIOURS] Behaviour={} Type={}",
+                    b.getClass().getName(),
+                    b.getType()
+            );
+        }
     }
 
     @Override
@@ -133,6 +136,8 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     }
 
     public void setVisualSpeedPercentage(int percentage) {
+        CreateVisualWindmillFixer.LOGGER.info("[SET VISUAL SPEED] Visual speed set to {}", percentage);
+
         this.visualSpeedPercentage = percentage;
         this.setChanged();
         this.sendData();
