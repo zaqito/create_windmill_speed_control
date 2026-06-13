@@ -14,6 +14,7 @@ public class VisualSpeedSlider extends ScrollValueBehaviour {
     public static final BehaviourType<VisualSpeedSlider> TYPE = new BehaviourType<>();
     private static final String NBT_KEY = "VisualSpeedScrollValue";
     private final CustomWindmillBearingBlockEntity customBE;
+    private static final int VISUAL_SPEED_NET_ID = 1;
 
     public VisualSpeedSlider(SmartBlockEntity be, ValueBoxTransform slot) {
         super(Component.literal("Visual Speed Factor"), be, slot);
@@ -37,11 +38,6 @@ public class VisualSpeedSlider extends ScrollValueBehaviour {
 
     @Override
     public void setValue(int value) {
-        CreateVisualWindmillFixer.LOGGER.info(
-                "[VISUAL_SLIDER] setValue {}",
-                value
-        );
-
         super.setValue(value);
     }
 
@@ -61,12 +57,11 @@ public class VisualSpeedSlider extends ScrollValueBehaviour {
 
     @Override
     public boolean testHit(Vec3 hit) {
-        CreateVisualWindmillFixer.LOGGER.info("[VISUAL_SLIDER] testHit");
         return super.testHit(hit);
     }
 
     @Override
     public int netId() {
-        return 1;
+        return VISUAL_SPEED_NET_ID;
     }
 }

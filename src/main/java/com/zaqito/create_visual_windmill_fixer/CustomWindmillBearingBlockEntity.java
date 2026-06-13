@@ -1,6 +1,5 @@
 package com.zaqito.create_visual_windmill_fixer;
 
-
 import com.simibubi.create.content.contraptions.bearing.WindmillBearingBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.ChatFormatting;
@@ -29,16 +28,8 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
-//        behaviours.remove(movementDirection);
         visualSlider = new VisualSpeedSlider(this, new SideShiftedValueBoxTransform());
         behaviours.add(visualSlider);
-        for (BlockEntityBehaviour b : behaviours) {
-            CreateVisualWindmillFixer.LOGGER.info(
-                    "[ADD BEHAVIOURS] Behaviour={} Type={}",
-                    b.getClass().getName(),
-                    b.getType()
-            );
-        }
     }
 
     @Override
@@ -70,7 +61,7 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     public float getPrevAngle() { return this.visualPrevAngle; }
 
     // -------------------------------------------------------------------------
-    // Visual angle tracking — client side only
+    // Visual angle tracking — client side only ?
     // -------------------------------------------------------------------------
     @Override
     public void tick() {
@@ -82,30 +73,12 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
 
             if (running) {
                 float realDelta = angularDifference(this.angle, angleBefore);
-                if (Math.abs(realDelta) > 100f) {
-                    CreateVisualWindmillFixer.LOGGER.warn(
-                            "[WRAP] before={} after={} delta={}",
-                            angleBefore,
-                            this.angle,
-                            realDelta
-                    );
-                }
                 visualAngle += realDelta * getVisualSpeedModifier();
 
                 // Contraption uses our visual angle on the client only.
                 if (movedContraption != null) {
                     float realContraptionAngle = movedContraption.getAngle(1.0f);
                     float error = Math.abs(angularDifference(realContraptionAngle, visualAngle));
-
-                    if (error > 10.0f) {
-                        CreateVisualWindmillFixer.LOGGER.warn(
-                                "[ANGLE_DRIFT] visual={} real={} diff={}",
-                                visualAngle,
-                                realContraptionAngle,
-                                error
-                        );
-                    }
-
                     movedContraption.setAngle(visualAngle);
                 }
             }
@@ -136,8 +109,6 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     }
 
     public void setVisualSpeedPercentage(int percentage) {
-        CreateVisualWindmillFixer.LOGGER.info("[SET VISUAL SPEED] Visual speed set to {}", percentage);
-
         this.visualSpeedPercentage = percentage;
         this.setChanged();
         this.sendData();
