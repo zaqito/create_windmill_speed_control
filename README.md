@@ -52,6 +52,31 @@ Existing Create contraptions continue to work normally.
 3. Place Create Visual Windmill Fixer in the `mods` folder
 4. Launch the game
 
+## Contributing
+
+Contributions are welcome !
+
+The project's primary objective is to improve windmill visuals while preserving Create's original mechanical balance.
+
+Feel free to open an issue or submit a pull request whether you would like to :
+
+* Report a bug
+* Suggest an improvement
+* Improve documentation
+* Submit a fix or a new feature
+
+
+Before opening a large feature PR, please consider discussing the proposal in an issue first so we can ensure it aligns with the project's goals.
+
+Please try to keep contributions :
+
+* Compatible with the supported Minecraft, NeoForge and Create versions
+* Consistent with the existing code style
+* Consistent with the project's primary objective
+* Focused and well documented
+
 ## License
 
-_MIT ?_
+This project is licensed under GPLv3. 
+
+By contributing, you agree that your contributions will be distributed under the same license.
