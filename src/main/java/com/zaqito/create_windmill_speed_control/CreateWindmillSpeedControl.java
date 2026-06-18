@@ -1,4 +1,4 @@
-package com.zaqito.create_visual_windmill_fixer;
+package com.zaqito.create_windmill_speed_control;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
@@ -16,17 +16,17 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(CreateVisualWindmillFixer.MODID)
-public class CreateVisualWindmillFixer {
+@Mod(CreateWindmillSpeedControl.MODID)
+public class CreateWindmillSpeedControl {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "createvisualwindmillfixer";
+    public static final String MODID = "create_windmill_speed_control";
 
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public CreateVisualWindmillFixer(IEventBus modEventBus, ModContainer modContainer) {
+    public CreateWindmillSpeedControl(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -40,7 +40,7 @@ public class CreateVisualWindmillFixer {
         ModItems.register();
 
         // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (createvisualwindmillfixer) to respond directly to events.
+        // Note that this is necessary if and only if we want *this* class (create_windmill_speed_control) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
@@ -75,7 +75,7 @@ public class CreateVisualWindmillFixer {
             );
         });
 
-        LOGGER.info("Visual Windmill Fixer Addon Initialized!");
+        LOGGER.info("Windmill Speed Control Addon Initialized!");
     }
 
     // Add the example block item to the building blocks tab
@@ -89,6 +89,6 @@ public class CreateVisualWindmillFixer {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        LOGGER.info("Server side registry validation effective");
+        LOGGER.info("Server side registry validation effective.");
     }
 }

@@ -1,4 +1,4 @@
-package com.zaqito.create_visual_windmill_fixer;
+package com.zaqito.create_windmill_speed_control;
 
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -11,11 +11,11 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
-@Mod(value = CreateVisualWindmillFixer.MODID, dist = Dist.CLIENT)
+@Mod(value = CreateWindmillSpeedControl.MODID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-@EventBusSubscriber(modid = CreateVisualWindmillFixer.MODID, value = Dist.CLIENT)
-public class CreateVisualWindmillFixerClient {
-    public CreateVisualWindmillFixerClient(ModContainer container) {
+@EventBusSubscriber(modid = CreateWindmillSpeedControl.MODID, value = Dist.CLIENT)
+public class CreateWindmillSpeedControlClient {
+    public CreateWindmillSpeedControlClient(ModContainer container) {
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
@@ -25,7 +25,7 @@ public class CreateVisualWindmillFixerClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        CreateVisualWindmillFixer.LOGGER.info("HELLO FROM CLIENT SETUP");
-        CreateVisualWindmillFixer.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        CreateWindmillSpeedControl.LOGGER.info("HELLO FROM CLIENT SETUP");
+        CreateWindmillSpeedControl.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 }

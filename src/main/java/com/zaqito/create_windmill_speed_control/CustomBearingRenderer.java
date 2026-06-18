@@ -1,4 +1,4 @@
-package com.zaqito.create_visual_windmill_fixer;
+package com.zaqito.create_windmill_speed_control;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllPartialModels;

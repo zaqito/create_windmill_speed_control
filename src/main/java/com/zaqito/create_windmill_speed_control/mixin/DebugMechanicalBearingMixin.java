@@ -1,7 +1,7 @@
-package com.zaqito.create_visual_windmill_fixer.mixin;
+package com.zaqito.create_windmill_speed_control.mixin;
 
 import com.simibubi.create.content.contraptions.bearing.MechanicalBearingBlockEntity;
-import com.zaqito.create_visual_windmill_fixer.CreateVisualWindmillFixer;
+import com.zaqito.create_windmill_speed_control.CreateWindmillSpeedControl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +14,7 @@ public class DebugMechanicalBearingMixin {
         MechanicalBearingBlockEntity self = (MechanicalBearingBlockEntity)(Object)this;
 
         if (self.getLevel().isClientSide()) {
-            CreateVisualWindmillFixer.LOGGER.debug(
+            CreateWindmillSpeedControl.LOGGER.debug(
                     "[APPLY_ROTATION] pos={} angle={}",
                     self.getBlockPos(),
                     self.getInterpolatedAngle(1.0f)

@@ -1,8 +1,7 @@
-package com.zaqito.create_visual_windmill_fixer.mixin;
+package com.zaqito.create_windmill_speed_control.mixin;
 
 import com.simibubi.create.content.contraptions.ControlledContraptionEntity;
-import com.simibubi.create.content.contraptions.bearing.MechanicalBearingBlockEntity;
-import com.zaqito.create_visual_windmill_fixer.CreateVisualWindmillFixer;
+import com.zaqito.create_windmill_speed_control.CreateWindmillSpeedControl;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +20,7 @@ public class DebugControlledContraptionEntityMixin {
         float currentAngle = ((ControlledContraptionEntityAccessor)this).getAngleField();
         float diff = Math.abs(incomingAngle - currentAngle);
         if (diff > 5f) {
-            CreateVisualWindmillFixer.LOGGER.warn(
+            CreateWindmillSpeedControl.LOGGER.warn(
                     "[SET_ANGLE] controller={} current={} incoming={} diff={}",
                     ((ControlledContraptionEntityAccessor)this).getControllerPos(),
                     currentAngle,

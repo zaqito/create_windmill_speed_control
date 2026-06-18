@@ -1,4 +1,4 @@
-package com.zaqito.create_visual_windmill_fixer;
+package com.zaqito.create_windmill_speed_control;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -6,7 +6,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CreateVisualWindmillFixer.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CreateWindmillSpeedControl.MODID);
 
     // Automatically maps an Item container wrapper around your physical visual windmill bearing block
     public static final DeferredItem<Item> VISUAL_WINDMILL_BEARING_ITEM = ITEMS.registerItem(

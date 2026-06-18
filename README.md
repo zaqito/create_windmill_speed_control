@@ -27,7 +27,7 @@ Large and decorative windmills often reach the maximum rotational speed very qui
 ## Features
 
 * Custom windmill bearing based on Create's vanilla windmill bearing
-* Adjustable visual speed factor (1% - 100%)
+* Adjustable visual speed factor (10% - 100%)
 * Independent rotation direction control
 * No impact on generated Stress Units (SU)
 * No impact on rotational power production

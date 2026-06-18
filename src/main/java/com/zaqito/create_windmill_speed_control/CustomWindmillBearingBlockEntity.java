@@ -1,4 +1,4 @@
-package com.zaqito.create_visual_windmill_fixer;
+package com.zaqito.create_windmill_speed_control;
 
 import com.simibubi.create.content.contraptions.bearing.WindmillBearingBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -61,7 +61,7 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
     public float getPrevAngle() { return this.visualPrevAngle; }
 
     // -------------------------------------------------------------------------
-    // Visual angle tracking — client side only ?
+    // Visual angle tracking
     // -------------------------------------------------------------------------
     @Override
     public void tick() {
@@ -75,7 +75,6 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
                 float realDelta = angularDifference(this.angle, angleBefore);
                 visualAngle += realDelta * getVisualSpeedModifier();
 
-                // Contraption uses our visual angle on the client only.
                 if (movedContraption != null) {
                     float realContraptionAngle = movedContraption.getAngle(1.0f);
                     float error = Math.abs(angularDifference(realContraptionAngle, visualAngle));
@@ -83,7 +82,6 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
                 }
             }
             else {
-                // Keep visual angle honest when stopped so restart is seamless
                 visualAngle = this.angle;
                 visualPrevAngle = this.angle;
             }
@@ -98,7 +96,7 @@ public class CustomWindmillBearingBlockEntity extends WindmillBearingBlockEntity
         // Let Create displays the default Stress/RPM stats first
         super.addToGoggleTooltip(tooltip, isPlayerSneaking);
 
-        // Append our custom percentage slider row to the overlay text
+        // Append the custom percentage slider row to the overlay text
         tooltip.add(Component.literal(" ")); // spacer line
         tooltip.add(Component.literal("Visual Speed Factor: ")
                 .withStyle(ChatFormatting.GRAY)

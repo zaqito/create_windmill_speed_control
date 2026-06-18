@@ -1,11 +1,11 @@
-package com.zaqito.create_visual_windmill_fixer;
+package com.zaqito.create_windmill_speed_control;
 
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(CreateVisualWindmillFixer.MODID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(CreateWindmillSpeedControl.MODID);
 
     // We declare our custom windmill bearing block.
     // We copy the properties of Create's original Windmill Bearing so it acts exactly the same way to tools/explosions.

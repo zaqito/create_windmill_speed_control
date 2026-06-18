@@ -1,4 +1,4 @@
-package com.zaqito.create_visual_windmill_fixer.mixin;
+package com.zaqito.create_windmill_speed_control.mixin;
 
 import com.simibubi.create.content.contraptions.ControlledContraptionEntity;
 import net.minecraft.core.BlockPos;
