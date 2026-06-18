@@ -1,6 +1,20 @@
-# Create Visual Windmill Fixer
+# Create - Windmill Speed Control
 
-A small Create add-on that lets players adjust the **visual rotation speed** of windmills without affecting their mechanical output.
+A small Create add-on that lets players adjust the **rotation speed** of windmills **without** affecting their mechanical output.
+
+## Quick Facts
+
+✔ Cosmetic only – does not affect SU production
+
+✔ Multiplayer compatible
+
+✔ Dedicated server compatible
+
+✔ Existing Create mechanics preserved
+
+✔ NeoForge 1.21.1
+
+✔ Create 6.0.10
 
 ## Why?
 
@@ -8,12 +22,12 @@ In Create, the rotation speed of a windmill depends on the number of sails attac
 
 Large and decorative windmills often reach the maximum rotational speed very quickly, resulting in blades spinning unrealistically fast. While this is mechanically correct, it can look odd for aesthetic builds.
 
-Create Visual Windmill Fixer solves this by adding a custom windmill bearing that allows players to reduce the visual rotation speed while preserving the original Create gameplay mechanics.
+`Create - Windmill Speed Control` solves this by adding a custom windmill bearing that allows players to reduce the visual rotation speed while preserving the original Create gameplay mechanics.
 
 ## Features
 
 * Custom windmill bearing based on Create's vanilla windmill bearing
-* Adjustable visual speed factor (10% - 100%)
+* Adjustable visual speed factor (1% - 100%)
 * Independent rotation direction control
 * No impact on generated Stress Units (SU)
 * No impact on rotational power production
@@ -22,7 +36,7 @@ Create Visual Windmill Fixer solves this by adding a custom windmill bearing tha
 
 ## How It Works
 
-The custom bearing behaves exactly like a normal Create windmill bearing.
+**The custom bearing behaves exactly like a normal Create windmill bearing.**
 
 Additional controls are available on the side of the block:
 
@@ -32,6 +46,21 @@ Additional controls are available on the side of the block:
 Only the visual animation speed is modified.
 
 Mechanical calculations, generated rotational force, and Stress Units remain unchanged.
+
+## Multiplayer Compatibility
+
+`Create - Windmill Speed Control` is fully compatible with multiplayer environments.
+
+The visual speed factor and rotation direction settings are synchronized between clients and the server, ensuring that all players see the same windmill behavior.
+
+Tested in:
+
+* Singleplayer
+* Dedicated NeoForge servers
+* Multiplayer client synchronization
+* World save and reload scenarios
+
+Both the server and connected clients should have the mod installed.
 
 ## Requirements
 
@@ -49,7 +78,7 @@ Existing Create contraptions continue to work normally.
 
 1. Install NeoForge for Minecraft 1.21.1
 2. Install Create 6.0.10
-3. Place Create Visual Windmill Fixer in the `mods` folder
+3. Place Create - Windmill Speed Control jar file in the `mods` folder
 4. Launch the game
 
 ## Contributing
