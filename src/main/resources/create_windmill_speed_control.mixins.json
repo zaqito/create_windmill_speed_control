@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.1",
+  "package": "com.zaqito.create_windmill_speed_control.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ControlledContraptionEntityAccessor",
+    "DebugControlledContraptionEntityMixin",
+    "DebugMechanicalBearingMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
