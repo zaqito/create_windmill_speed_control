@@ -19,7 +19,6 @@ public class CreateWindmillSpeedControlClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        CreateWindmillSpeedControl.LOGGER.info("HELLO FROM CLIENT SETUP");
-        CreateWindmillSpeedControl.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        CreateWindmillSpeedControl.LOGGER.info("Initialized client side.");
     }
 }
