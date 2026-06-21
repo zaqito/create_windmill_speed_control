@@ -46,7 +46,7 @@ authors="zaqito"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A simple Create add-on mod that gives the possibility for the user to change the rotational speed of the windmill bearing block. Pure visual effect, no logic modified.
+A simple Create add-on that adds a new custom windmill bearing allowing the user to adjust the visual rotation speed. Pure visual effect, no logic modified.
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
@@ -92,6 +92,13 @@ A simple Create add-on mod that gives the possibility for the user to change the
     modId="create"
     type="required"
     versionRange="[6.0.10,6.1.0)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="iris-flywheel-compat"
+    type="optional"
+    versionRange="[2.3.1,2.4.0)"
     ordering="NONE"
     side="BOTH"
 

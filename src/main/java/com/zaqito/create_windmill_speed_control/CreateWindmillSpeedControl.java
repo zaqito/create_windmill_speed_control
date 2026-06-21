@@ -70,7 +70,7 @@ public class CreateWindmillSpeedControl {
             );
         });
 
-        LOGGER.info("Windmill Speed Control Addon Initialized!");
+        LOGGER.info("Windmill Speed Control add-on initialized!");
     }
 
     // Add the example block item to the building blocks tab
