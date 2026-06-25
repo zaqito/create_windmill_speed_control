@@ -6,6 +6,8 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import static com.simibubi.create.AllBlocks.WINDMILL_BEARING;
+
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(CreateWindmillSpeedControl.MODID);
 
@@ -17,6 +19,7 @@ public class ModBlocks {
                             BlockBehaviour.Properties.of()
                                     .mapColor(MapColor.PODZOL)
                                     .noOcclusion()
+                                    .strength(1.5F)
                     )
             );
 
