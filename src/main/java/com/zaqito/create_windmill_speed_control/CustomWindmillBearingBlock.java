@@ -26,20 +26,4 @@ public class CustomWindmillBearingBlock extends WindmillBearingBlock {
     public BlockEntityType<? extends WindmillBearingBlockEntity> getBlockEntityType() {
         return ModBlockEntities.VISUAL_WINDMILL_BEARING_ENTITY.get();
     }
-
-    @Override
-    public float getDestroyProgress(BlockState state,
-                                    Player player,
-                                    BlockGetter level,
-                                    BlockPos pos) {
-
-        float value = super.getDestroyProgress(state, player, level, pos);
-
-        System.out.println(
-                "Tool=" + player.getMainHandItem().getItem()
-                        + " Progress=" + value
-        );
-
-        return value;
-    }
 }
