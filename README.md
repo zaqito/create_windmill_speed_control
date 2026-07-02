@@ -1,32 +1,111 @@
-# MultiLoader Template
+# Create : Windmill Speed Control (_WIP MULTILOADER_)
 
-This project provides a Gradle project template that can compile Minecraft mods for multiple modloaders using a common project for the sources. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project, please join our [Discord](https://discord.myceliummod.network).
+A small Create add-on that lets players adjust the **rotation speed** of windmills **without** affecting their mechanical output.
 
-## Getting Started
+## Quick Facts
 
-### IntelliJ IDEA
-This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
+✔ Cosmetic only – does not affect SU production
 
-1. Clone or download this repository to your computer.
-2. Configure the project by setting the properties in the `gradle.properties` file. You will also need to change the `rootProject.name`  property in `settings.gradle`, this should match the folder name of your project, or else IDEA may complain.
-3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README.md file and the gradlew executable.
-4. If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
-5. Open your Run/Debug Configurations. Under the `Application` category there should now be options to run Fabric and NeoForge projects. Select one of the client options and try to run it.
-6. Assuming you were able to run the game in step 5 your workspace should now be set up.
+✔ Multiplayer compatible
 
-### Eclipse
-While it is possible to use this template in Eclipse it is not recommended. During the development of this template multiple critical bugs and quirks related to Eclipse were found at nearly every level of the required build tools. While we continue to work with these tools to report and resolve issues support for projects like these are not there yet. For now Eclipse is considered unsupported by this project. The development cycle for build tools is notoriously slow so there are no ETAs available.
+✔ Dedicated server compatible
 
-## Development Guide
-When using this template the majority of your mod should be developed in the `common` project. The `common` project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The `common` project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the `fabric` or `neoforge` projects.
+✔ Existing Create mechanics preserved
 
-Loader specific projects such as the `fabric` and `neoforge` project are used to load the `common` project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all the code in the `common` project. It is important to remember that the `common` project can not access code from loader specific projects.
+✔ NeoForge 1.21.1
 
-## Removing Platforms and Loaders
-While this template has support for many modloaders, new loaders may appear in the future, and existing loaders may become less relevant.
+✔ Create 6.0.10
 
-Removing loader specific projects is as easy as deleting the folder, and removing the `include("projectname")` line from the `settings.gradle` file.
-For example if you wanted to remove support for `forge` you would follow the following steps:
+## Why?
 
-1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
-2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 
+In Create, the rotation speed of a windmill depends on the number of sails attached to the contraption.
+
+Large and decorative windmills often reach the maximum rotational speed very quickly, resulting in blades spinning unrealistically fast. While this is mechanically correct, it can look odd for aesthetic builds.
+
+`Create : Windmill Speed Control` solves this by adding a custom windmill bearing that allows players to reduce the visual rotation speed while preserving the original Create gameplay mechanics.
+
+## Features
+
+* Custom windmill bearing based on Create's vanilla windmill bearing
+* Adjustable visual speed factor (10% - 100%)
+* Independent rotation direction control
+* No impact on generated Stress Units (SU)
+* No impact on rotational power production
+* Fully compatible with standard Create windmill contraptions
+* Multiplayer compatible
+
+## How It Works
+
+**The custom bearing behaves exactly like a normal Create windmill bearing.**
+
+Additional controls are available on the side of the block:
+
+* **Rotation Direction**: clockwise / counter-clockwise
+* **Visual Speed Factor**: controls how fast the windmill appears to rotate
+
+Only the visual animation speed is modified.
+
+Mechanical calculations, generated rotational force, and Stress Units remain unchanged.
+
+## Multiplayer Compatibility
+
+`Create : Windmill Speed Control` is fully compatible with multiplayer environments.
+
+The visual speed factor and rotation direction settings are synchronized between clients and the server, ensuring that all players see the same windmill behavior.
+
+Tested in:
+
+* Singleplayer
+* Dedicated NeoForge servers
+* Multiplayer client synchronization
+* World save and reload scenarios
+
+Both the server and connected clients should have the mod installed.
+
+## Requirements _WIP MULTILOADER_
+
+* Minecraft 1.21.1
+* NeoForge
+* Create 6.0.10
+
+## Compatibility
+
+This mod is purely cosmetic and does not alter Create's progression or balance.
+
+Existing Create contraptions continue to work normally.
+
+## Installation _WIP MULTILOADER_
+
+1. Install NeoForge for Minecraft 1.21.1
+2. Install Create 6.0.10
+3. Place Create - Windmill Speed Control jar file in the `mods` folder
+4. Launch the game
+
+## Contributing
+
+Contributions are welcome !
+
+The project's primary objective is to improve windmill visuals while preserving Create's original mechanical balance.
+
+Feel free to open an issue or submit a pull request whether you would like to :
+
+* Report a bug
+* Suggest an improvement
+* Improve documentation
+* Submit a fix or a new feature
+
+
+Before opening a large feature PR, please consider discussing the proposal in an issue first so we can ensure it aligns with the project's goals.
+
+Please try to keep contributions :
+
+* Compatible with the supported Minecraft, NeoForge and Create versions
+* Consistent with the existing code style
+* Consistent with the project's primary objective
+* Focused and well documented
+
+## License
+
+This project is licensed under GPLv3.
+
+By contributing, you agree that your contributions will be distributed under the same license.
