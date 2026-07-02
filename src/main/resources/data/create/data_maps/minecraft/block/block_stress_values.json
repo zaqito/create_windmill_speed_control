@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": {
-    "create_windmill_speed_control:visual_windmill_bearing": {
-      "capacity": 16.0,
-      "impact": 0.0
-    }
-  }
-}
