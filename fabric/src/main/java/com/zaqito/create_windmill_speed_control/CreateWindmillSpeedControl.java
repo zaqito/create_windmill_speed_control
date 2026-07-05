@@ -2,7 +2,7 @@ package com.zaqito.create_windmill_speed_control;
 
 import net.fabricmc.api.ModInitializer;
 
-public class ExampleMod implements ModInitializer {
+public class CreateWindmillSpeedControl implements ModInitializer {
     
     @Override
     public void onInitialize() {
