@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "create_windmill_speed_control:visual_windmill_bearing"
+        }
+      ]
+    }
+  ]
+}
