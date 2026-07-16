@@ -1,4 +1,4 @@
-# Create - Windmill Speed Control
+# Create : Windmill Speed Control (_WIP MULTILOADER_)
 
 A small Create add-on that lets players adjust the **rotation speed** of windmills **without** affecting their mechanical output.
 
@@ -22,7 +22,7 @@ In Create, the rotation speed of a windmill depends on the number of sails attac
 
 Large and decorative windmills often reach the maximum rotational speed very quickly, resulting in blades spinning unrealistically fast. While this is mechanically correct, it can look odd for aesthetic builds.
 
-`Create - Windmill Speed Control` solves this by adding a custom windmill bearing that allows players to reduce the visual rotation speed while preserving the original Create gameplay mechanics.
+`Create : Windmill Speed Control` solves this by adding a custom windmill bearing that allows players to reduce the visual rotation speed while preserving the original Create gameplay mechanics.
 
 ## Features
 
@@ -49,7 +49,7 @@ Mechanical calculations, generated rotational force, and Stress Units remain unc
 
 ## Multiplayer Compatibility
 
-`Create - Windmill Speed Control` is fully compatible with multiplayer environments.
+`Create : Windmill Speed Control` is fully compatible with multiplayer environments.
 
 The visual speed factor and rotation direction settings are synchronized between clients and the server, ensuring that all players see the same windmill behavior.
 
@@ -62,7 +62,7 @@ Tested in:
 
 Both the server and connected clients should have the mod installed.
 
-## Requirements
+## Requirements _WIP MULTILOADER_
 
 * Minecraft 1.21.1
 * NeoForge
@@ -74,7 +74,7 @@ This mod is purely cosmetic and does not alter Create's progression or balance.
 
 Existing Create contraptions continue to work normally.
 
-## Installation
+## Installation _WIP MULTILOADER_
 
 1. Install NeoForge for Minecraft 1.21.1
 2. Install Create 6.0.10
@@ -106,6 +106,6 @@ Please try to keep contributions :
 
 ## License
 
-This project is licensed under GPLv3. 
+This project is licensed under GPLv3.
 
 By contributing, you agree that your contributions will be distributed under the same license.
