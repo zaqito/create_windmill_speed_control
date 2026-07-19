@@ -1,84 +1,52 @@
-# Create : Windmill Speed Control (_WIP MULTILOADER_)
+# Create : Windmill Speed Control
 
-A small Create add-on that lets players adjust the **rotation speed** of windmills **without** affecting their mechanical output.
+A Minecraft Create add-on that introduces a custom windmill bearing, allowing players to visually decouple a windmill's visual rotation speed from its actual mechanical stress output.
 
-## Quick Facts
+This project uses a multiloader architecture powered by Gradle. While currently targeting NeoForge, the codebase is structured to easily support additional platforms (like Fabric) in the future.
 
-✔ Cosmetic only – does not affect SU production
-
-✔ Multiplayer compatible
-
-✔ Dedicated server compatible
-
-✔ Existing Create mechanics preserved
-
-✔ NeoForge 1.21.1
-
-✔ Create 6.0.10
+## Features & Mechanics
+* **Visual Scaling:** Adds an alternate Windmill Bearing with side-controls to adjust visual speed (10% - 100%) and rotation direction.
+* **Purely Cosmetic:** Modifies client-side animation rendering only. Mechanical calculations, generated rotational force, and Stress Unit (SU) production remain identical to standard Create behavior.
+* **Network Synced:** Settings are fully synchronized between the server and connected clients.
+* **Vanilla Friendly:** Preserves all existing Create contraption assembly mechanics without altering game progression or balance.
 
 ## Why?
-
 In Create, the rotation speed of a windmill depends on the number of sails attached to the contraption.
 
 Large and decorative windmills often reach the maximum rotational speed very quickly, resulting in blades spinning unrealistically fast. While this is mechanically correct, it can look odd for aesthetic builds.
 
 `Create : Windmill Speed Control` solves this by adding a custom windmill bearing that allows players to reduce the visual rotation speed while preserving the original Create gameplay mechanics.
 
-## Features
+## Repository Structure
+The project is split into a multi-project Gradle layout:
 
-* Custom windmill bearing based on Create's vanilla windmill bearing
-* Adjustable visual speed factor (10% - 100%)
-* Independent rotation direction control
-* No impact on generated Stress Units (SU)
-* No impact on rotational power production
-* Fully compatible with standard Create windmill contraptions
-* Multiplayer compatible
+- `common/` – Contains core logic, rendering adjustments, and platform-agnostic code.
+- `neoforge/` – NeoForge-specific implementation, configuration, and build logic.
+- `forge/` - _empty for now, coming soon_
+- `fabric/` - _empty for now, coming soon_
 
-## How It Works
+## Development & Building
+This project is plug-and-play using standard Gradle wrappers.
 
-**The custom bearing behaves exactly like a normal Create windmill bearing.**
+## Prerequisites
+* Java 21 JDK (or matching target Minecraft version requirements)
 
-Additional controls are available on the side of the block:
+## Setup & Compilation
+1. Clone the repository:
+`git clone https://github.com/yourusername/create-windmill-speed-control.git`
 
-* **Rotation Direction**: clockwise / counter-clockwise
-* **Visual Speed Factor**: controls how fast the windmill appears to rotate
+2. Import the root build.gradle into your IDE (IntelliJ IDEA recommended) as a Gradle project.
 
-Only the visual animation speed is modified.
+3. Build the project jars:
+`./gradlew build`
 
-Mechanical calculations, generated rotational force, and Stress Units remain unchanged.
+Compiled binaries for active platforms will be located in their respective `[platform]/build/libs/ directories`.
 
-## Multiplayer Compatibility
+## User Installation
 
-`Create : Windmill Speed Control` is fully compatible with multiplayer environments.
-
-The visual speed factor and rotation direction settings are synchronized between clients and the server, ensuring that all players see the same windmill behavior.
-
-Tested in:
-
-* Singleplayer
-* Dedicated NeoForge servers
-* Multiplayer client synchronization
-* World save and reload scenarios
-
-Both the server and connected clients should have the mod installed.
-
-## Requirements _WIP MULTILOADER_
-
-* Minecraft 1.21.1
-* NeoForge
-* Create 6.0.10
-
-## Compatibility
-
-This mod is purely cosmetic and does not alter Create's progression or balance.
-
-Existing Create contraptions continue to work normally.
-
-## Installation _WIP MULTILOADER_
-
-1. Install NeoForge for Minecraft 1.21.1
-2. Install Create 6.0.10
-3. Place Create - Windmill Speed Control jar file in the `mods` folder
+1. Install NeoForge 21 (for Minecraft 1.21.1)
+2. Install Create [6.0.8, 6.0.10]
+3. Place `create_windmill_speed_control-neoforge-1.2A.B-X.Y.Z` jar file in the `mods` folder
 4. Launch the game
 
 ## Contributing
