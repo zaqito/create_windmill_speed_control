@@ -42,11 +42,15 @@ neoForge {
 }
 
 dependencies {
-    // mod specific deps
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}") { transitive = false }
-    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+
+    // Ponder path has changed from 1.0.70
+//    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}") // from 1.0.79
+    implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")   // before 1.0.79
+
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 }
 
