@@ -15,15 +15,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class ContraptionMixin {
 
     static {
-        Constants.LOG.info("Create Windmill Speed Control: ContraptionMixin loaded!");
+        Constants.LOG.info("ContraptionMixin loaded.");
     }
 
     /**
-     * Makes Create's Windmill Bearing disassembly logic also recognize
-     * our custom Windmill Bearing.
+     * Makes Create's Windmill Bearing disassembly logic also recognize our custom Windmill Bearing.
      *
-     * In Contraption.moveBlock(), this is the first
-     * BlockEntry.has(BlockState) call for AllBlocks.WINDMILL_BEARING.
+     * In Contraption.moveBlock(), this is the first BlockEntry.has(BlockState) call for AllBlocks.WINDMILL_BEARING.
      */
     @Redirect(
             method = "moveBlock",
@@ -42,11 +40,9 @@ public abstract class ContraptionMixin {
     }
 
     /**
-     * Makes Create's Windmill Bearing movement logic also recognize
-     * our custom Windmill Bearing.
+     * Makes Create's Windmill Bearing movement logic also recognize our custom Windmill Bearing.
      *
-     * In Contraption.moveBlock(), this is the second
-     * BlockEntry.has(BlockState) call for AllBlocks.WINDMILL_BEARING.
+     * In Contraption.moveBlock(), this is the second BlockEntry.has(BlockState) call for AllBlocks.WINDMILL_BEARING.
      */
     @Redirect(
             method = "moveBlock",
